@@ -73,24 +73,72 @@
                 </li>
             </ul>
             <ul class="navbar-nav ms-auto">
+                @guest
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('login') }}">
+                        <img id="profilePhoto" src="{{ asset('assets/img/user-icon.png') }}" class="rounded-circle img-thumbnail" alt="Default Profile" width="40" height="40">
+                    </a>
+                </li>
+                @else
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('myProfile') }}">
-                        {{-- @auth
+                        <img id="profilePhoto" src="{{ Auth::user()->profile_photo ? asset('storage/' . Auth::user()->profile_photo) : asset('assets/img/user-icon.png') }}" class="rounded-circle img-thumbnail" alt="Profile" width="40" height="40">
+                    </a>
+                </li>
+                @endguest
+                
+                
+                {{-- <li class="nav-item">
+                    <a class="nav-link" href="{{ route('myProfile') }}">
+                        @auth
                             <img class="profile rounded-circle" src="{{ asset(Auth::user()->profile_picture) }}" alt="Profile" width="40" height="40">
-                        @else --}}
+                        @else 
                             <img class="profile rounded-circle" src="{{ asset('assets/img/user-icon.png') }}" alt="Profile" width="40" height="40">
-                        {{-- @endauth --}}
+                        @endauth
+
+                        <img id="profilePhoto" src="{{Auth::user()->profile_photo ? asset('storage/' .Auth::user()->profile_photo) : asset('assets/img/user-icon.png') }}" class="rounded-circle img-thumbnail" alt="Profile" width="40" height="40">
+           
                     </a>
                     
-                </li>
+                </li> --}}
 
             </ul>
         </div>
     </nav>
 
     <div class="container mt-5">
+        @if (session('status'))
+        <div id="statusMessage" class="alert alert-success">
+            {{ session('status') }}
+        </div>
+        @endif
+    
+        @if ($errors->any())
+        <div class="alert alert-danger" id="statusMessage">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+
+        <x-input-error :messages="$errors->userDeletion->get('password')" class="mt-2"   id="statusMessage" class="alert alert-success"/>
+
+    <div class="container mt-5">
         @yield('content')
     </div>
+
+    <script>
+            // Automatically remove status message after 2 seconds
+        setTimeout(function() {
+        var statusMessage = document.getElementById('statusMessage');
+        if (statusMessage) {
+            statusMessage.remove();
+        }
+        }, 2000);
+    </script>
+
 
 </body>
 </html>

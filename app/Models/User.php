@@ -23,6 +23,7 @@ class User extends Authenticatable
         'age',
         'mobile',
         'country',
+        'profile_photo',
     ];
 
     /**

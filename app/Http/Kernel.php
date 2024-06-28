@@ -17,6 +17,9 @@ class Kernel extends HttpKernel
     protected $middlewareGroups = [
         'web' => [
             // Other web middleware
+            //add mee
+
+            
         ],
 
         'api' => [

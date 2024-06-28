@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,7 +12,12 @@ class HomeController extends Controller
 
     public function home()
     {
-        return view('user.home');
+
+        $posts = Post::with('user')->where('is_approved', true)->get();
+        
+        return view('user.home', compact('posts'));
+
+    
     }
 
     public function admindash()

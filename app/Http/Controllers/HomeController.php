@@ -29,12 +29,6 @@ class HomeController extends Controller
     {
         return view('user.about');
     }
-    
-    public function chat()
-    {
-        return view('user.chat');
-    }
-
  
 
     public function faq()

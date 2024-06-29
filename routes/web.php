@@ -1,12 +1,13 @@
 <?php
 
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Middleware\Admin; 
+use App\Http\Middleware\Admin;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
@@ -18,14 +19,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/myProfile', [ProfileController::class, 'show'])->name('myProfile');
     Route::put('/myProfile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/myProfile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/chat', [HomeController::class, 'chat'])->name('chat');
+
+    Route::get('/chat', [ChatController::class, 'chat'])->name('chat');
+    Route::post('/chat', [ChatController::class, 'store'])->name('chat.store');
 
     Route::get('/que', [PostController::class, 'index'])->name('que');
     Route::post('/que', [PostController::class, 'store'])->name('que.store');
     Route::post('/like/{post}', [PostController::class, 'toggleLike'])->name('like.toggle');
 
     Route::post('/', [CommentController::class, 'store'])->name('comments.store');
-
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -42,8 +44,6 @@ Route::get('/auth', function () {
 })->name('auth');
 
 require __DIR__.'/auth.php';
-
-
 
 
 

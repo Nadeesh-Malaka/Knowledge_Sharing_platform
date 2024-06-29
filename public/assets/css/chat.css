@@ -1,73 +1,197 @@
-:root {
-    --main-color: #4415ff;
-    --main-color-darker: #a9e54e;
-    --white: #b9bbe8;
-   
-  }
+/* chatGroup.css */
 
-  @media (min-width: 992px) {
-    .navbar-nav {
-        display:flex;
-        align-items: center;
-        justify-content: center;
-        margin-left: 100px;
-        
-    }
+.container2 {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 10px;
 }
 
-.post{
-    align-items: center;
-    text-align: center;
-    color: red;
+.message-container {
+    max-height: 400px; /* Limit height for scrolling messages */
+    overflow-y: auto; /* Enable vertical scroll */
 }
 
-.navbar-nav {
+.message {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+    clear: both;
+    overflow: hidden;
+}
+
+.message img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    float: left;
+    margin-right: 10px;
+}
+
+.message p {
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 10px;
+    clear: both;
+    overflow: hidden;
+}
+
+.message.darker {
+    background-color: #ddd;
+}
+
+.message.darker p {
+    background-color: #ddd;
+    float: right;
+}
+
+.input-container {
+    margin-top: 20px;
     display: flex;
-    align-items:center;
-    justify-content:center;
-    gap: 80px; 
-    
 }
 
-.border-gray {
-    border-style: solid;
-    border-color: rgb(221, 221, 221);
-    border-width: 1px;
+.input-container input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
 }
 
-.text-gray-dark {
-    color: rgb(117, 115, 115);
-}
-.text-gray-darker {
-    color: rgb(83, 82, 82);
-}
-
-.text-main-color {
-    color: var(--main-color)
-}
-
-.bg-main-color {
-    background-color: var(--main-color)
+.input-container button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
 }
 
-.border-main-color {
-    border-bottom-style: solid;
-    border-width: 4px;
-    border-color:  var(--main-color);
+.input-container button:hover {
+    background-color: #0056b3;
 }
 
-.bg-second-color {
-    background-color: rgb(233, 233, 233);
-}
-.nav-link svg {
-    width: 45px;
-    height: 45px;
-    padding-left: 7px;
-    padding-right: 7px;
+/* public/assets/css/chat.css */
+.message-container {
+    max-height: 500px;
+    overflow-y: auto;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
 }
 
-.profile {
-    width: 45px;
-    height: 45px;
-    padding: 7px;
+.message {
+    background-color: #e2e2e2;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
 }
+
+.message img {
+    margin-right: 10px;
+}
+
+.time-right {
+    margin-left: auto;
+    font-size: 0.8em;
+    color: #555;
+}
+
+.input-container {
+    margin-top: 20px;
+}
+
+.input-group {
+    display: flex;
+}
+
+.container2 {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.message-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    margin-bottom: 20px;
+}
+
+.message {
+    background-color: #e2e2e2;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    max-width: 60%;
+}
+
+.message img {
+    margin-right: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.message p {
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.time-right {
+    margin-left: auto;
+    font-size: 0.8em;
+    color: #555;
+}
+
+.input-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+}
+
+.input-container form {
+    display: flex;
+    width: 100%;
+}
+
+.input-container input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    margin-right: 10px;
+}
+
+.input-container button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    background-color: #007bff;
+    color: #fff;
+}
+
+.time-right {
+    margin-left: auto;
+    font-size: 0.8em;
+    color: #555;
+}
+
+.date-time {
+    font-size: 0.8em;
+    color: #555;
+    text-align: right;
+    margin-top: 5px;
+}
+

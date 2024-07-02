@@ -2,9 +2,11 @@
 
 @section('content')
 <div class="container mt-5">
-    <h1 class="text-center">Contact Us</h1>
+    <h1 class="text-center" style="color: blue; font-weight: bold;">Contact Us</h1><br>
     <p class="text-center mb-5">We’d love to hear from you! Whether you have a question, feedback, or need assistance, our team is here to help.</p>
-
+    <div class="contact-image mb-5">
+        <img src=  {{asset('assets/img/contact.svg') }}  alt="Centered Image">
+    </div>
     <div class="row">
         <div class="col-lg-6">
             <h2>Email Us</h2>
@@ -31,7 +33,7 @@
 
         <div class="col-lg-6">
             <h2>Contact Form</h2>
-          
+          <div class="contact-form-border">
             <form action="{{ route('contact.store') }}" method="POST">
                 @csrf
                 @auth
@@ -52,15 +54,12 @@
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <button type="reset" class="btn btn-secondary">Reset</button>
             </form>
+        </div>
         </div>  
     </div>
 
     <p class="text-center mt-5">We look forward to connecting with you!</p>
 </div>
 
-<footer>
-    <div class="container">
-        <p>&copy; 2024 KnoWell. All rights reserved.</p>
-    </div>
-</footer>
+
 @endsection

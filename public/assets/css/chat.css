@@ -18,6 +18,9 @@
     clear: both;
     overflow: hidden;
 }
+.navbar-custom {
+    background-color: #4415ff; /* Blue for the navbar */
+  }
 
 .message img {
     width: 50px;
@@ -195,3 +198,107 @@
     margin-top: 5px;
 }
 
+
+footer {
+    background-color: var(--main-color);
+    color: var(--white);
+    padding: 10px 0;
+    text-align: center;
+    width: 100%;
+}
+
+footer a {
+    color: var(--white);
+    text-decoration: none;
+    margin: 0 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+
+/* public/assets/css/chat.css */
+.container2 {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.message-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    margin-bottom: 20px;
+    max-height: 500px; /* Limit height for scrolling messages */
+}
+
+.message {
+    background-color: #e2e2e2;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    max-width: 80%; /* Make message box smaller for aesthetics */
+}
+
+.message img {
+    margin-right: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.message p {
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.time-right {
+    margin-left: auto;
+    font-size: 0.8em;
+    color: #555;
+}
+
+.input-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+}
+
+.input-container form {
+    display: flex;
+    width: 100%;
+}
+
+.input-container input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    margin-right: 10px;
+}
+
+.input-container button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    background-color: #007bff;
+    color: #fff;
+}
+
+.input-container button:hover {
+    background-color: #0056b3;
+}

@@ -10,14 +10,24 @@ class HomeController extends Controller
 
 {
 
-    public function home()
+    public function home(Request $request)
     {
+        $search = $request->input('search');
 
-        $posts = Post::with('user')->where('is_approved', true)->get();
-        
+        // Fetch all approved posts by default
+        $posts = Post::with('user')->where('is_approved', true);
+
+        // Filter posts if search term is provided
+        if ($search) {
+            $posts->where(function ($query) use ($search) {
+                $query->where('content', 'like', '%' . $search . '%');
+                // You can add more conditions here based on your needs
+            });
+        }
+
+        $posts = $posts->get();
+
         return view('user.home', compact('posts'));
-
-    
     }
 
     public function admindash()

@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container mt-5">
+    
     <div id="message-container" class="message-container">
         @foreach($chats as $chat)
         <div class="message mb-3">
@@ -33,5 +34,5 @@
 </script>
 @endsection
 
-
+<br><br>
 @endsection

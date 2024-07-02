@@ -1,0 +1,92 @@
+.navbar-custom {
+    background-color: #4415ff;
+  }
+
+  .navbar-brand {
+    color: var(--white);
+    font-family: 'Lobster', cursive;
+    font-size: 2rem;
+  }
+
+  .nav-link {
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: bold;
+  }
+
+  .nav-link:hover {
+    color: black;
+    background-color: black;
+  }
+
+  .nav-link.active {
+    color: var(--main-color-darker);
+  }
+
+  .search-icon {
+    border-color: var(--white);
+    border-radius: 15px;
+    padding-left: 25px;
+    background: url("src/outline_search_black_24dp.png") no-repeat left;
+    background-size: 20px;
+    font-weight: bold;
+    color: black;
+  }
+
+  .btn-outline-primary {
+    background-color: aqua;
+    color: black;
+    font-weight: bold;
+  }
+
+  .profile {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+
+  .dropdown-menu {
+    display: none;
+  }
+
+  .navbar-brand {
+    color: var(--white);
+    font-family: 'Lobster', cursive;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-brand img {
+    height: 30px;
+    margin-right: 10px;
+  }
+  
+  footer {
+    background-color: #4415ff;
+    color: var(--blue);
+    padding: 10px 0;
+    text-align: center;
+    width: 100%;
+}
+
+  footer a {
+    color: var(--blue);
+    text-decoration: none;
+    margin: 0 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+
+

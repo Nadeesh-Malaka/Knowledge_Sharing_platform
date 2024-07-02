@@ -1,4 +1,4 @@
-@extends('layouts.header',['title' => 'profile', 'pageCss' => 'assets/css/profile.css'])
+@extends('layouts.header',['title' => 'profile', 'pageCss' => 'assets/css/profile.cs'])
 
 @section('content')
 
@@ -86,5 +86,7 @@
         }
     }
 </script>
+
+<br><br><br>
 
 @endsection

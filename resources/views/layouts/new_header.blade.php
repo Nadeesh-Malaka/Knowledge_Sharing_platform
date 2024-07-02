@@ -8,204 +8,104 @@
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&family=Lobster&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --main-color: #4415ff;
-            --main-color-darker: #a9e54e;
-            --white: #fff;
-            --gray-light: #f8f9fa;
-            --gray-dark: #7d7d7d;
-            --navbar-bg-color:#4415ff;
-            --hover-color: black;
+       :root {
+        --main-color: #4415ff;
+        --main-color-darker: #a9e54e;
+        --white: #fff;
+        --gray-light: #f8f9fa;
+        --hover-color: black;
+        --navbar-bg-color: blue;
+      }
+
+      body {
+        font-family: 'Roboto', Arial, sans-serif;
+        background-color: var(--gray-light);
+        padding-top: 60px;
+      }
+
+      .navbar-custom {
+        background-color: var(--navbar-bg-color);
+      }
+
+      .navbar-brand {
+        color: var(--white);
+        font-family: 'Lobster', cursive;
+        font-size: 1.8rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .navbar-brand img {
+        height: 30px;
+        margin-right: 10px;
+      }
+
+      .nav-link {
+        color: var(--white);
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-weight: bold;
+        margin-top: 5px; /* Adjust the margin to fit better vertically */
+      }
+
+      .nav-link:hover {
+        color: var(--hover-color);
+        background-color: rgb(25, 24, 24);
+        border-radius: 5px;
+      }
+
+      .nav-link.active {
+        color: var(--main-color-darker);
+      }
+
+      .search-icon {
+        border-color: var(--white);
+        border-radius: 15px;
+        padding-left: 25px;
+        background: url("src/outline_search_black_24dp.png") no-repeat left;
+        background-size: 20px;
+        font-weight: bold;
+        color: black;
+      }
+
+      .btn-outline-primary {
+        background-color: aqua;
+        color: black;
+        font-weight: bold;
+      }
+
+      .profile {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
+
+      @media (min-width: 992px) {
+        .navbar-nav {
+          margin-left: 50px;
         }
+      }
 
-        body {
-            font-family: 'Roboto', Arial, sans-serif;
-            background-color: var(--gray-light);
-            padding-top: 60px;
-        }
+      .dropdown:hover .dropdown-menu {
+        display: block;
+      }
 
-        .navbar-custom {
-            background-color: var(--navbar-bg-color);
-        }
+      .dropdown-menu {
+        display: none;
+      }
 
-        .navbar-brand {
-            color: var(--white);
-            font-family: 'Lobster', cursive;
-            font-size: 2rem;
-        }
+      .navbar-toggler {
+        margin-top: 10px; /* Adjust the margin to fit better vertically */
+      }
 
-        .nav-link {
-            color: var(--white) !important;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-weight: bold;
-        }
+      .navbar-nav .nav-item + .nav-item {
+        margin-left: 20px; /* Adjust spacing between nav items */
+      }
 
-        .nav-link:hover {
-            color: var(--hover-color) !important;
-            background-color: var(--white);
-        }
-
-        .nav-link.active {
-            color: var(--main-color-darker);
-        }
-
-        .search-icon {
-            border-color: var(--white);
-            border-radius: 15px;
-            padding-left: 25px;
-            background: url("src/outline_search_black_24dp.png") no-repeat left;
-            background-size: 20px;
-            font-weight: bold;
-            color: black;
-            background-color: var(--white);
-        }
-
-        .btn-outline-primary {
-            background-color: var(--white);
-            color: var(--black);
-            font-weight: bold;
-        }
-
-        .profile {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-        }
-
-        .post-container {
-            background-color: var(--white);
-            
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 1400px;
-            margin: 20px auto;
-            text-align: left;
-        }
-
-        .post-caption {
-            font-size: 1.2rem;
-            color: var(--gray-dark);
-            margin-bottom: 20px;
-        }
-
-        .btn-outline-primary {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-weight: bold;
-        }
-
-        footer {
-            background-color: var(--main-color);
-            color: var(--white);
-            padding: 10px 0;
-            text-align: center;
-        }
-
-        footer a {
-            color: var(--white);
-            text-decoration: none;
-            margin: 0 10px;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        .dropdown:hover .dropdown-menu {
-            display: block;
-        }
-
-        .dropdown-menu {
-            display: none;
-        }
-
-        .navbar-brand {
-            color: var(--white);
-            font-family: 'Lobster', cursive;
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .navbar-brand img {
-            height: 30px;
-            margin-right: 10px;
-        }
-
-        .like-options {
-            display: none;
-            position: absolute;
-            background: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-            padding: 10px;
-            z-index: 1;
-        }
-
-        .like-options button {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-        }
-
-        .btn-outline-primary:hover .like-options {
-            display: flex;
-        }
-
-        .side-nav {
-            height: 100%;
-            width: 200px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            background-color: lightblue;
-            padding-top: 20px;
-            z-index: 1;
-        }
-
-        .side-nav a {
-            padding: 15px 20px;
-            text-decoration: none;
-            font-size: 18px;
-            color: white;
-            display: block;
-            transition: 0.3s;
-        }
-
-        .side-nav a:hover {
-            background-color: #575757;
-        }
-
-        .side-nav i {
-            margin-right: 10px;
-        }
-
-        .container {
-            margin-left: 100px; /* Same as the width of the side nav */
-        }
-
-        .post-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-
-        .post-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        /* Example CSS for sticky footer */
-
-
-
-
-
+      .navbar-nav.ms-auto {
+        margin-right: 20px;
+      }
         
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
@@ -270,8 +170,8 @@
                     @endguest
 
                 </ul>
-                <form class="d-flex" action="{{ route('home') }}" method="GET">
-                    <input class="form-control me-2 search-icon" type="search" placeholder="Search KnoWell" aria-label="Search" name="search">
+                <form class="d-flex">
+                    <input class="form-control me-2 search-icon" type="search" placeholder="Search KnoWell" aria-label="Search">
                     <button class="btn btn-outline-primary" type="submit">Search</button>
                 </form>
 
@@ -302,41 +202,38 @@
     </nav>
 
     <div class="container mt-5">
-      
+        @if (session('status'))
+        <div id="statusMessage" class="alert alert-success">
+            {{ session('status') }}
+        </div>
+        @endif
+    
+        @if ($errors->any())
+        <div class="alert alert-danger" id="statusMessage">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+  
+        <x-input-error :messages="$errors->userDeletion->get('password')" class="mt-2"   id="statusMessage" class="alert alert-success"/>
+
+
+    <script>
+        // Automatically remove status message after 2 seconds
+    setTimeout(function() {
+    var statusMessage = document.getElementById('statusMessage');
+    if (statusMessage) {
+        statusMessage.remove();
+    }
+    }, 2000);
+    </script>
 
     
 
 <div class="container mt-5">
-
-    @if (session('status'))
-    <div id="statusMessage" class="alert alert-success">
-        {{ session('status') }}
-    </div>
-    @endif
-
-    @if ($errors->any())
-    <div class="alert alert-danger" id="statusMessage">
-        <ul>
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif
-
-    <x-input-error :messages="$errors->userDeletion->get('password')" class="mt-2"   id="statusMessage" class="alert alert-success"/>
-
-
- <script>
-    // Automatically remove status message after 2 seconds
- setTimeout(function() {
-  var statusMessage = document.getElementById('statusMessage');
-  if (statusMessage) {
-     statusMessage.remove();
- }
-  }, 2000);
-   </script>
-
     @foreach($posts as $post)
     <div class="post-container mb-5" id="post{{ $post->id }}">
         <div class="post-header">
@@ -362,7 +259,7 @@
                 </button>
             </form>
 
-            <button class="btn btn-outline-primary" data-bs-toggle="collapse" data-bs-target="#comment{{ $post->id }}" >
+            <button class="btn btn-outline-primary" data-bs-toggle="collapse" data-bs-target="#comment{{ $post->id }}" onclick="incrementCount('comment-count{{ $post->id }}')">
                 <i class="material-icons">comment</i> <span id="comment-count{{ $post->id }}">{{ $post->comments()->count() }}</span> Comments
             </button>
             
@@ -410,7 +307,7 @@
 </div>
 
     </div>
-<footer style="background-color: #4415ff; color: white; padding: 10px 20px; text-align: center;">
+<footer style="background-color: blue; color: white; padding: 10px 20px; text-align: center;">
     <p>&copy; 2024 KnoWell. All rights reserved</p>
 </footer>
 

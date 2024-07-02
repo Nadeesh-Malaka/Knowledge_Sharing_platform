@@ -1,109 +1,181 @@
 :root {
     --main-color: #4415ff;
     --main-color-darker: #a9e54e;
-    --white: #b9bbe8;
-   
+    --white: #fff;
+    --faq-header-color: #ff5722;
+    --gray-light: #f8f9fa;
+    --gray-dark: #7d7d7d;
+    --hover-color: black; /* Hover color for nav links */
+    --hover-background: white; /* Hover background color for nav links */
   }
 
-  @media (min-width: 992px) {
-    .navbar-nav {
-        display:flex;
-        align-items: center;
-        justify-content: center;
-        margin-left: 100px;
-        
-    }
-}
+  body {
+    font-family: 'Open Sans', Arial, sans-serif; /* Consistent body font */
+    background-color: var(--gray-light);
+    padding-top: 70px; /* Adjusted for fixed-top navbar */
+  }
 
-.post{
-    align-items: center;
-    text-align: center;
-    color: red;
-}
+  .navbar-custom {
+    background-color: #4415ff; /* Blue for the navbar */
+  }
 
-.navbar-nav {
+  .navbar-brand {
+    color: var(--white);
+    font-family: 'Lobster', cursive; /* Improved look for KnoWell logo */
+    font-size: 2rem; /* Increased font size for brand */
+  }
+
+  .nav-link {
+    color: var(--white);
     display: flex;
-    align-items:center;
-    justify-content:center;
-    gap: 80px; 
-    
-}
+    align-items: center;
+    gap: 5px;
+    font-weight: bold;
+  }
 
-.border-gray {
-    border-style: solid;
-    border-color: rgb(221, 221, 221);
-    border-width: 1px;
-}
+  .nav-link:hover {
+    color: var(--hover-color); /* Changed hover color to black */
+    background-color: var(--hover-background); /* Set hover background color to white */
+  }
 
-.text-gray-dark {
-    color: rgb(117, 115, 115);
-}
-.text-gray-darker {
-    color: rgb(83, 82, 82);
-}
+  .search-icon {
+    border-color: var(--white); /* Border color white */
+    border-radius: 15px;
+    font-weight: bold; /* Inside letters bold */
+    color: black; /* Inside letters black */
+    padding-left: 30px; /* Adjusted padding for search icon */
+    background: url('https://cdn-icons-png.flaticon.com/512/54/54481.png') no-repeat left center;
+    background-size: 20px;
+  }
 
-.text-main-color {
-    color: var(--main-color)
-}
+  .btn-outline-primary {
+    background-color: aqua;
+    color: black;
+    font-weight: bold;
+  }
 
-.bg-main-color {
-    background-color: var(--main-color)
-}
+  .profile {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
 
-.border-main-color {
-    border-bottom-style: solid;
-    border-width: 4px;
-    border-color:  var(--main-color);
-}
-
-.bg-second-color {
-    background-color: rgb(233, 233, 233);
-}
-.nav-link svg {
-    width: 45px;
-    height: 45px;
-    padding-left: 7px;
-    padding-right: 7px;
-}
-
-.profile {
-    width: 45px;
-    height: 45px;
-    padding: 7px;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
-    padding-top: 20px;
-}
-.guidelines-container {
-    max-width: 800px;
+  .guidelines-container {
+    max-width: 1000px; /* Increased size of content box */
     margin: auto;
-    background-color: #ffffff;
-    padding: 30px;
+    background-color: var(--white);
+    padding: 40px; /* Increased padding for larger content box */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-.guidelines-header {
+    display: flex; /* Use flexbox for two-column layout */
+    gap: 20px; /* Add some space between columns */
+  }
+
+  .guidelines-content {
+    flex: 1; /* Allow content to take available space */
+  }
+
+  .guidelines-header {
     color: var(--main-color);
     font-weight: bold;
     margin-bottom: 20px;
-}
-.guidelines-list {
-    list-style-type: none;
+    font-family: 'Playfair Display', serif; /* Font for headings */
+    text-align: center; /* Center align header */
+  }
+
+  p {
+    font-family: 'Open Sans', Arial, sans-serif; /* Font for paragraphs */
+  }
+
+  .guidelines-list {
+    list-style-type: none; /* Remove default list style */
     padding: 0;
-}
-.guidelines-list li {
+    font-family: 'Lora', serif; /* Font for list items */
+  }
+
+  .guidelines-list li {
     margin-bottom: 20px;
-}
-.guidelines-list li span {
+    padding-left: 25px;
+    position: relative;
+  }
+
+  .guidelines-list li::before {
+    content: "✔"; /* Use a check mark for each list item */
+    position: absolute;
+    left: 0;
+    color: var(--main-color);
+  }
+
+  .guidelines-list li span {
     font-weight: bold;
-    color: var(--main-color-darker);
-}
-.guidelines-footer {
-    margin-top: 30px;
+    color: var(black);
+    text-align: center;
+  }
+
+  a {
+    font-family: 'Montserrat', sans-serif; /* Font for anchor tags */
+  }
+
+  .guidelines-footer {
+    margin-top: 40px;
     text-align: center;
     color: var(--main-color);
     font-weight: bold;
-}
+  }
+
+  footer {
+    background-color: var(--main-color);
+    color: var(--white);
+    padding: 10px 0;
+    text-align: center;
+  }
+
+  footer a {
+    color: var (--white);
+    text-decoration: none;
+    margin: 0 10px;
+  }
+
+  footer a:hover {
+    text-decoration: underline;
+  }
+
+  .dropdown:hover .dropdown-menu {
+    display: block; /* Display dropdown menu on hover */
+  }
+
+  .guidelines-image {
+    width: 300px;
+    height: 300px;
+    align-items: center;
+  }
+
+  @media (max-width: 991px) {
+    .navbar-nav {
+      margin-left: 0;
+      gap: 20px;
+    }
+
+    .guidelines-container {
+      flex-direction: column; /* Stack columns vertically on small screens */
+      align-items: center; /* Center align content on small screens */
+    }
+
+    .guidelines-image {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+
+  .navbar-brand {
+        color: var(--white);
+        font-family: 'Lobster', cursive;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .navbar-brand img {
+        height: 30px;
+        margin-right: 10px;
+    }

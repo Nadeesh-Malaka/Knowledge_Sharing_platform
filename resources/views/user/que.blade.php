@@ -28,7 +28,6 @@
             </div>
         </div>
     </div>
-    <footer class="text-center py-3 mt-5">
-        <h6>හො.ම.ත.ග.යු - සියලු හිමිකම් ඇවිරිණි. -2024</h6>
-    </footer>
+    <br><br><br>
+
 @endsection

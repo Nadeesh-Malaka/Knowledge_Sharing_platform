@@ -61,6 +61,18 @@ class PostController extends Controller
 
     }
 
+    public function share(Request $request, Post $post)
+    {
+        // Generate the shareable link
+        $shareableLink = route('post.show', $post->id);
+
+        // Example: Record the share event (optional)
+        // $post->shares()->create(['user_id' => auth()->id()]);
+
+        // You can redirect the user with a message or perform other actions
+        return redirect()->back()->with('message', 'Post link: ' . $shareableLink);
+    }
+
      
 
 

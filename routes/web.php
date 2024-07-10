@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
@@ -36,7 +37,12 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('admin/dashboard', [HomeController::class, 'admindash']);
+
+
+   Route::get('admin/dashboard', [AdminController::class, 'adminhome'])->name('adminhome');
+
+
+
 });
 
 Route::get('/auth', function () {

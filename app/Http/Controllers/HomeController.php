@@ -30,10 +30,10 @@ class HomeController extends Controller
         return view('user.home', compact('posts'));
     }
 
-    public function admindash()
-    {
-        return view('admin.adminhome');
-    }
+    // public function adminhome()
+    // {
+    //     return view('admin.adminhome');
+    // }
 
     public function about()
     {

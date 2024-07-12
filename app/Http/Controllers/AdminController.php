@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Validation\Rule;
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -99,11 +100,115 @@ class AdminController extends Controller
 
     public function delete($id)
    {
-    $user = User::findOrFail($id);
-    $user->delete();
+        $user = User::findOrFail($id);
+        $user->delete();
     
-    return redirect()->route('adminhome')->with('notify_message', ['status' => 'success', 'msg' => 'User deleted successfully!']); 
+         return redirect()->route('adminhome')->with('notify_message', ['status' => 'success', 'msg' => 'User deleted successfully!']); 
    }
+  
+    //.....................Post section.........................................................
+   
+   public function viewpost(Request $request)
+   {
+       $query = Post::query();
+   
+       if ($request->filled('name')) {
+           $query->whereHas('user', function ($q) use ($request) {
+               $q->where('name', 'like', '%' . $request->name . '%');
+           });
+       }
+   
+       if ($request->filled('content')) {
+           $query->where('content', 'like', '%' . $request->content . '%');
+       }
+   
+       $posts = $query->get();
+       
+       return view('admin.post.posthome', compact('posts'));
+   }
+   
+   public function addpost()
+   {
+       return view('admin.post.addpost'); // Create this view
+   }
+   
+   public function storepost(Request $request)
+   {
+       $request->validate([
+           'user_id' => 'required|exists:users,id',
+           'content' => 'required',
+           'post_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+       ]);
+   
+       $post = new Post($request->only('user_id', 'content'));
+   
+       if ($request->hasFile('post_image')) {
+           $post->post_image = $request->file('post_image')->store('post_images', 'public');
+       }
+   
+       $post->save();
+   
+       return redirect()->route('viewpost')->with('notify_message', ['status' => 'success', 'msg' => 'Post added successfully!']);
+   }
+   
+   public function deletepost($id)
+   {
+       $post = Post::findOrFail($id);
+       if ($post->post_image) {
+           Storage::disk('public')->delete($post->post_image);
+       }
+       $post->delete();
+   
+       return redirect()->route('viewpost')->with('notify_message', ['status' => 'success', 'msg' => 'Post deleted successfully!']);
+   }
+   
+   public function markasapproved($id)
+   {
+       $post = Post::findOrFail($id);
+       $post->is_approved = 1;
+       $post->save();
+   
+       return redirect()->route('viewpost')->with('notify_message', ['status' => 'success', 'msg' => 'Post approved successfully!']);
+   }
+   
+   public function markasnotapproved($id)
+   {
+       $post = Post::findOrFail($id);
+       $post->is_approved = 0;
+       $post->save();
+   
+       return redirect()->route('viewpost')->with('notify_message', ['status' => 'success', 'msg' => 'Post disapproved successfully!']);
+   }
+   
+   public function showupdatepost($id)
+   {
+       $post = Post::findOrFail($id);
+       return view('admin.post.updatepost', compact('post')); // Create this view
+   }
+   
+   public function updatepost(Request $request, $id)
+   {
+       $post = Post::findOrFail($id);
+   
+       $request->validate([
+           'content' => 'required',
+           'post_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+       ]);
+   
+       $post->content = $request->content;
+   
+       if ($request->hasFile('post_image')) {
+           if ($post->post_image) {
+               Storage::disk('public')->delete($post->post_image);
+           }
+           $post->post_image = $request->file('post_image')->store('post_images', 'public');
+       }
+   
+       $post->save();
+   
+       return redirect()->route('viewpost')->with('notify_message', ['status' => 'success', 'msg' => 'Post updated successfully!']);
+   }
+   
 
     
 
@@ -113,25 +218,4 @@ class AdminController extends Controller
 
 
 
-
-
-
-
-
-
-
-
-
-
-    public function approveCustomer(User $user)
-    {
-        $user->update(['is_approved' => true]);
-        return redirect()->route('admin.customers')->with('status', 'Customer approved successfully.');
-    }
-
-    public function deleteCustomer(User $user)
-    {
-        $user->delete();
-        return redirect()->route('admin.customers')->with('status', 'Customer deleted successfully.');
-    }
 }

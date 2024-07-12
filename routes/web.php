@@ -41,10 +41,19 @@ Route::middleware(['auth', 'admin'])->group(function () {
    Route::get('admin/dashboard', [AdminController::class, 'adminhome'])->name('adminhome');
    Route::get('admin/add_user',[AdminController::class,'adduser'])->name('adduser');
    Route::post('admin/store_user',[AdminController::class,'storeuser'])->name('storeuser');
-
    Route::get('admin/edit_user/{id}', [AdminController::class, 'showedit'])->name('showedit');
    Route::post('admin/edit_user/{id}', [AdminController::class, 'edituser'])->name('edituser');
    Route::delete('/delete/{id}', [AdminController::class, 'delete'])->name('delete');
+
+   Route::get('admin/view_post', [AdminController::class, 'viewpost'])->name('viewpost');
+   Route::get('admin/add_post', [AdminController::class, 'addpost'])->name('addpost');
+   Route::post('admin/store_post', [AdminController::class, 'storepost'])->name('storepost');
+   Route::delete('admin/delete_post/{id}', [AdminController::class, 'deletepost'])->name('deletepost');
+   Route::get('admin/mark_as_approved/{id}', [AdminController::class, 'markasapproved'])->name('markasapproved');
+   Route::get('admin/mark_as_not_approved/{id}', [AdminController::class, 'markasnotapproved'])->name('markasnotapproved');
+   Route::get('admin/update_post/{id}', [AdminController::class, 'showupdatepost'])->name('updatepost');
+   Route::post('admin/update_post/{id}', [AdminController::class, 'updatepost'])->name('updatepost');
+
 
 
 

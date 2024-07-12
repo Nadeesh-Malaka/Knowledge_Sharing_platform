@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <div class="card">
         <div class="card-header">
-            Search
+            Search Post
             <a href="{{ route('addpost') }}" class="btn btn-info float-right" type="button">Add New Post</a>
         </div>
     </div>
@@ -41,7 +41,7 @@
                 <thead class="thead-light">
                     <tr>
                         <th>#</th>
-                        <th>User Name</th>
+                        <th>Name</th>
                         <th>Content</th>
                         <th>Is Approved</th>
                         <th>Post Image</th>

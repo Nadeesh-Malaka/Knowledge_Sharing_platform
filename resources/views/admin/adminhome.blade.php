@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <div class="card">
         <div class="card-header">
-            Search
+            Search User
             <a href="{{route('adduser')}}" class="btn btn-info float-right" type="button">Add New Customer</a>
         </div>
     </div>

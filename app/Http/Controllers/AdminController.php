@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Validation\Rule;
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Chat;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -208,12 +209,53 @@ class AdminController extends Controller
    
        return redirect()->route('viewpost')->with('notify_message', ['status' => 'success', 'msg' => 'Post updated successfully!']);
    }
-   
 
+   //.........................Chat section.................................
+
+    public function chathome(Request $request)
+   {
+    $query = Chat::query();
+
+    if ($request->filled('name')) {
+        $query->whereHas('user', function ($q) use ($request) {
+            $q->where('name', 'like', '%' . $request->name . '%');
+        });
+    }
+
+    if ($request->filled('message')) {
+        $query->where('message', 'like', '%' . $request->message . '%');
+    }
+
+    $chats = $query->get();
     
+    return view('admin.chat.chathome', compact('chats'));
+}
 
-   
+public function deletechat($id)
+{
+    $chat = Chat::findOrFail($id);
+    $chat->delete();
+    return redirect()->route('chathome')->with('notify_message', ['status' => 'success', 'msg' => 'Chat deleted successfully']);
 
+}
+
+public function showupdatechat($id)
+{
+    $chat = Chat::findOrFail($id);
+
+    return view('admin.chat.updatechat', compact('chat'));
+}
+
+public function updatechat(Request $request, $id)
+{
+    $chat = Chat::findOrFail($id);
+    $chat->message = $request->message;
+    $chat->save();
+
+    return redirect()->route('chathome')->with('notify_message', ['status' => 'success', 'msg' => 'Chat updated successfully']);
+    
+    
+}
 
 
 

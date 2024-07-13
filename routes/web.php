@@ -20,13 +20,21 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/myProfile', [ProfileController::class, 'show'])->name('myProfile');
     Route::put('/myProfile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/myProfile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
     Route::put('/posts/{post}', [ProfileController::class, 'updatepost'])->name('posts.update');
     Route::delete('/posts/{post}', [ProfileController::class, 'destroypost'])->name('posts.destroy');
     Route::post('/posts/{post}/remove-image', [ProfileController::class, 'removeImage'])->name('posts.removeImage');
+    Route::put('/comments/{comment}', [ProfileController::class, 'updateComment'])->name('comments.update');
+    Route::delete('/comments/{comment}', [ProfileController::class, 'destroyComment'])->name('comments.destroy');
+    Route::delete('/feedback/{contact}', [ProfileController::class, 'destroyFeedback'])->name('feedback.destroy');
+
+
 
     Route::get('/chat', [ChatController::class, 'chat'])->name('chat');
     Route::post('/chat', [ChatController::class, 'store'])->name('chat.store');
+    Route::put('/chat/{chat}', [ChatController::class, 'update'])->name('chat.update');
+    Route::delete('/chat/{chat}', [ChatController::class, 'destroy'])->name('chat.destroy');
+
+
     Route::get('/que', [PostController::class, 'index'])->name('que');
     Route::post('/que', [PostController::class, 'store'])->name('que.store');
     

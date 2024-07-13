@@ -110,22 +110,6 @@
     </div>
 </div>
 
-{{-- For managing comments
-<div class="row mt-4">
-    <div class="col-md-12">
-        <h3>My Comments</h3>
-        <ul id="commentList" class="list-group">
-            @foreach ($user->posts->comments as $comment)
-                <li class="list-group-item">
-                    <input type="text" class="form-control mb-2" value="{{ $comment->content }}" onchange="updateComment(this, {{ $comment->id }})">
-                    <button class="btn btn-danger" onclick="deleteComment({{ $comment->id }})">Delete</button>
-                </li>
-            @endforeach
-        </ul>
-    </div>
-</div> --}}
-
-
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -189,24 +173,187 @@
 </script>
 
 
-<br><br>
+{{-- For managing comments --}}
+<div class="row mt-4">
+    <div class="col-md-12">
+        <h3>My Comments</h3>
 
-{{-- For delete account --}}
-<form method="post" action="{{ route('profile.destroy') }}" class="p-6" onsubmit="return deleteAccount()">
-    @csrf
-    @method('delete')
-
-    <h2>Account Delete</h2>
-
-    <p>Please enter your password to confirm you would like to permanently delete your account.</p>
-
-    <div class="mt-6">
-        <label for="password">Password:</label>
-        <input id="password" name="password" type="password" class="mt-1 block w-3/4" placeholder="Enter here" required />
-
-        <button type="submit" class="btn btn-danger">Delete Account</button>
+        <div class="card">
+            <div class="card-header">
+                Comments
+            </div>
+            <div class="card-body">
+                <table class="table table-light">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>#</th>
+                            <th>Post</th>
+                            <th>Comment</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($user->comments as $comment)
+                        <tr>
+                            <td>{{$loop->iteration}}</td>
+                            <td>{{ $comment->post->content }}</td>
+                            <td>
+                                <div class="edit-content" data-id="{{ $comment->id }}">
+                                    <span class="comment-content">{{ $comment->content }}</span>
+                                    <input type="text" class="form-control comment-edit" style="display:none;" value="{{ $comment->content }}">
+                                    <button class="btn btn-sm btn-primary save-comment" style="display:none;">Save</button>
+                                    <button class="btn btn-sm btn-secondary cancel-comment" style="display:none;">Cancel</button>
+                                </div>
+                            </td>
+                            <td>
+                                <button class="btn btn-info edit-comment">Edit</button>
+                                <form action="{{ route('comments.destroy', $comment->id) }}" method="POST" style="display:inline" onsubmit="return confirm('Are you sure you want to delete this comment?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="4" class="text-center">No Comments Available</td>
+                        </tr>
+                        @endforelse        
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-</form>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.edit-comment').forEach(function(button) {
+            button.addEventListener('click', function() {
+                var row = this.closest('tr');
+                row.querySelector('.comment-content').style.display = 'none';
+                row.querySelector('.comment-edit').style.display = 'inline-block';
+                row.querySelector('.save-comment').style.display = 'inline-block';
+                row.querySelector('.cancel-comment').style.display = 'inline-block';
+            });
+        });
+
+        document.querySelectorAll('.save-comment').forEach(function(button) {
+            button.addEventListener('click', function() {
+                var row = this.closest('tr');
+                var commentId = row.querySelector('.edit-content').getAttribute('data-id');
+                var newContent = row.querySelector('.comment-edit').value;
+
+                fetch('/comments/' + commentId, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({ content: newContent })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        row.querySelector('.comment-content').textContent = newContent;
+                        row.querySelector('.comment-content').style.display = 'inline';
+                        row.querySelector('.comment-edit').style.display = 'none';
+                        row.querySelector('.save-comment').style.display = 'none';
+                        row.querySelector('.cancel-comment').style.display = 'none';
+                    } else {
+                        alert('Failed to update the comment');
+                    }
+                });
+            });
+        });
+
+        document.querySelectorAll('.cancel-comment').forEach(function(button) {
+            button.addEventListener('click', function() {
+                var row = this.closest('tr');
+                row.querySelector('.comment-content').style.display = 'inline';
+                row.querySelector('.comment-edit').style.display = 'none';
+                row.querySelector('.save-comment').style.display = 'none';
+                row.querySelector('.cancel-comment').style.display = 'none';
+            });
+        });
+    });
+</script>
+
+{{-- For managing contacts --}}
+<div class="row mt-4">
+    <div class="col-md-12">
+        <h3>View Feedback</h3>
+
+        <div class="card">
+            <div class="card-header">
+                Feedbacks
+            </div>
+            <div class="card-body">
+                <table class="table table-light">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>#</th>
+                            <th>Message</th>
+                            <th>Reply</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($user->contacts as $contact)
+                        <tr>
+                            <td>{{$loop->iteration}}</td>
+                            <td>{{ $contact->message }}</td>
+                        
+                            <td>
+                                @if ($contact->reply)
+                                    {{ $contact->reply }}
+                                @else
+                                    <b>Not replied yet.</b>
+                                @endif
+                            </td>
+                            
+                            <td>
+                                <form action="{{ route('feedback.destroy', $contact->id) }}" method="POST" style="display:inline" onsubmit="return confirm('Are you sure you want to delete this feedback?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="4" class="text-center">No feedback available</td>
+                        </tr>
+                        @endforelse        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<br>
+{{-- For delete account --}}
+<div class="row mt-4">
+    <div class="col-md-12">
+        <form method="post" action="{{ route('profile.destroy') }}" class="p-6" onsubmit="return deleteAccount()">
+            @csrf
+            @method('delete')
+        
+            <h2>Account Delete</h2>
+        
+            <p>Please enter your password to confirm you would like to permanently delete your account.</p>
+        
+            <div class="mt-6">
+                <label for="password">Password:</label>
+                <input id="password" name="password" type="password" class="mt-1 block w-3/4" placeholder="Enter here" required />
+        
+                <button type="submit" class="btn btn-danger">Delete Account</button>
+            </div>
+        </form>
+    </div>
+</div>
 
 <script>
     function deleteAccount() {

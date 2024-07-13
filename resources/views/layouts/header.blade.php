@@ -134,6 +134,7 @@
 
 
       @yield('content')
+      @yield('scripts')
   </div>
 
   <script>

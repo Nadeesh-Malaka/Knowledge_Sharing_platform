@@ -32,6 +32,8 @@
       color: #f00;
     }
 
+    
+
     </style>
 
 @yield('styles')
@@ -51,7 +53,7 @@
   
       <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <a href="###" class="brand-link text-center">
-        
+          {{-- <i class="fas fa-cogs"></i> --}}
           <span class="brand-text font-weight-light">KnoWell Admin</span>
         </a>
   
@@ -74,7 +76,7 @@
               
               <li class="nav-item">
                 <a href="{{route('adminhome')}}" class="nav-link">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <i class="fas fa-users"></i>
                   <p>
                    Users
                   </p>
@@ -82,7 +84,7 @@
               </li>  
               <li class="nav-item">
                 <a href="{{route('viewpost')}}" class="nav-link">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <i class="fas fa-blog"></i>
                   <p>
                    Posts
                   </p>
@@ -90,7 +92,7 @@
               </li>    
               <li class="nav-item">
                 <a href="{{route('chathome')}}" class="nav-link">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <i class="fas fa-comments"></i>
                   <p>
                     Chats
                   </p>
@@ -98,14 +100,27 @@
               </li>  
               <li class="nav-item">
                 <a href="{{route('viewFeedback')}}" class="nav-link">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <i class="fas fa-comment-dots"></i>
                   <p>
                     Feedback
                   </p>
                 </a>
               </li> 
 
+              <li>
+                <nav class="bottom-nav">
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                      @csrf
+                  </form>
+                  <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                      <i class="fas fa-sign-out-alt"></i> Log Out
+                  </a>
+              </nav>
+              
+              </li>
+
             </ul>
+        
           </nav>
         </div>
       </aside>
@@ -125,6 +140,8 @@
         <section class="content">
           @yield('content')
         </section>
+
+      
       </div>
       <!-- /.content-wrapper -->
   

@@ -21,20 +21,22 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/myProfile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/myProfile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    Route::put('/posts/{post}', [ProfileController::class, 'updatepost'])->name('posts.update');
+    Route::delete('/posts/{post}', [ProfileController::class, 'destroypost'])->name('posts.destroy');
+    Route::post('/posts/{post}/remove-image', [ProfileController::class, 'removeImage'])->name('posts.removeImage');
+
     Route::get('/chat', [ChatController::class, 'chat'])->name('chat');
     Route::post('/chat', [ChatController::class, 'store'])->name('chat.store');
-
     Route::get('/que', [PostController::class, 'index'])->name('que');
     Route::post('/que', [PostController::class, 'store'])->name('que.store');
+    
     Route::post('/like/{post}', [PostController::class, 'toggleLike'])->name('like.toggle');
-
     Route::post('/', [CommentController::class, 'store'])->name('comments.store');
-});
-
-Route::middleware(['auth'])->group(function () {
     Route::get('/contact', [ContactController::class, 'index'])->name('contact');
     Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+
 });
+
 
 
 Route::middleware(['auth', 'admin'])->group(function () {

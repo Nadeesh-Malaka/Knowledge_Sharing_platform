@@ -45,6 +45,7 @@
                         <th>Content</th>
                         <th>Is Approved</th>
                         <th>Post Image</th>
+                        <th>Mark As</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -57,24 +58,28 @@
                         <td>{{ $post->is_approved ? 'Approved' : 'Pending' }}</td>
                         <td>
                             @if($post->post_image)
-                            <img src="{{ asset('storage/' . $post->post_image) }}" alt="post" width="80" height="80">
+                            <img src="{{ asset('storage/' . $post->post_image) }}" alt="post" width="100" height="60">
                             @else
                             No post image
                             @endif
                         </td>
                         <td>
                             @if($post->is_approved)
-                            <a href="{{ route('markasnotapproved', $post->id) }}" class="btn btn-danger">Mark as Not Approved</a>
+                            <a href="{{ route('markasnotapproved', $post->id) }}" class="btn btn-success">Mark as Not Approved</a>
                             @else
-                            <a href="{{ route('markasapproved', $post->id) }}" class="btn btn-primary">Mark as Approved</a>
+                            <a href="{{ route('markasapproved', $post->id) }}" class="btn btn-secondary">Mark as Approved</a>
                             @endif
+                        </td>
+                        <td>    
                             <form action="{{ route('deletepost', $post->id) }}" method="POST" style="display:inline" onsubmit="return confirm('Are you sure you want to delete this post?');">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-warning">Delete</button>
+                                <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
-                            <a href="{{ route('updatepost', $post->id) }}" class="btn btn-success">Update</a>
+                            <a href="{{ route('updatepost', $post->id) }}" class="btn btn-info">Edit</a>
+                            <a href="{{ route('viewComments', $post->id) }}" class="btn btn-link">View Comments</a>
                         </td>
+                        
                     </tr>
                     @empty
                     <tr>

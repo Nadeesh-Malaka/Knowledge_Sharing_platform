@@ -55,9 +55,9 @@
                             <form action="{{ route('deletechat', $chat->id) }}" method="POST" style="display:inline" onsubmit="return confirm('Are you sure you want to delete this chat?');">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-warning">Delete</button>
+                                <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
-                            <a href="{{ route('updatechat', $chat->id) }}" class="btn btn-success">Edit</a>
+                            <a href="{{ route('updatechat', $chat->id) }}" class="btn btn-info">Edit</a>
                         </td>
                     </tr>
                     @empty

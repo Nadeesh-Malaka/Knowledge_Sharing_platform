@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Validation\Rule;
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\Chat;
+use App\Models\Comment;
+use App\Models\Contact;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -27,13 +29,13 @@ class AdminController extends Controller
     
         $customers = $query->get();
     
-        return view('admin.adminhome', compact('customers'));
+        return view('admin.user.adminhome', compact('customers'));
     }
     
 
     public function adduser()
     {
-        return view('admin.add_user');
+        return view('admin.user.add_user');
     }
 
     public function storeuser(Request $request)
@@ -63,7 +65,7 @@ class AdminController extends Controller
     public function showedit($id)
     {
         $user = User::findOrFail($id);
-        return view('admin.edit_user', compact('user'));
+        return view('admin.user.edit_user', compact('user'));
     }
 
     public function edituser(Request $request, $id)
@@ -130,8 +132,10 @@ class AdminController extends Controller
    
    public function addpost()
    {
-       return view('admin.post.addpost'); // Create this view
+       $users = User::all(); // Retrieve all users
+       return view('admin.post.addpost', compact('users')); // Pass users to the view
    }
+   
    
    public function storepost(Request $request)
    {
@@ -210,6 +214,48 @@ class AdminController extends Controller
        return redirect()->route('viewpost')->with('notify_message', ['status' => 'success', 'msg' => 'Post updated successfully!']);
    }
 
+   //...................comments.......................
+
+   public function viewComments($postId)
+   {
+       $comments = Comment::where('post_id', $postId)->get();
+       $post = Post::findOrFail($postId);
+   
+       return view('admin.post.comments', compact('comments', 'post'));
+   }
+
+   public function deleteComment($id)
+   {
+       $comment = Comment::findOrFail($id);
+       $comment->delete();
+   
+       return redirect()->back()->with('notify_message', ['status' => 'success', 'msg' => 'Comment delete successfully!']);
+   }
+
+   public function editComment($id)
+   {
+       $comment = Comment::findOrFail($id);
+   
+       return view('admin.post.editcomment', compact('comment'));
+   }
+   
+   public function updateComment(Request $request, $id)
+   {
+       $comment = Comment::findOrFail($id);
+   
+       $request->validate([
+           'content' => 'required|string',
+       ]);
+   
+       $comment->update([
+           'content' => $request->content,
+       ]);
+   
+       return redirect()->route('viewComments', $comment->post_id)->with('notify_message', ['status' => 'success', 'msg' => 'Comment update successfully!']);
+   }
+
+
+
    //.........................Chat section.................................
 
     public function chathome(Request $request)
@@ -255,6 +301,40 @@ public function updatechat(Request $request, $id)
     return redirect()->route('chathome')->with('notify_message', ['status' => 'success', 'msg' => 'Chat updated successfully']);
     
     
+}
+
+
+//........................feedback section.........................................
+
+
+    
+public function viewFeedback()
+{
+    $feedbacks = Contact::all();
+    return view('admin.feedback.feedbackhome', compact('feedbacks'));
+}
+
+public function deleteFeedback($id)
+{
+    $feedback = Contact::findOrFail($id);
+    $feedback->delete();
+    return redirect()->route('viewFeedback')->with('notify_message', ['status' => 'success', 'msg' => 'Feedback deleted successfully']);
+}
+
+public function replyContact($id)
+{
+    $contact = Contact::findOrFail($id);
+    return view('admin.feedback.replycontact', compact('contact'));
+}
+
+
+public function storeReplyContact(Request $request, $id)
+{
+    $contact = Contact::findOrFail($id);
+    $contact->update([
+        'reply' => $request->reply,
+    ]);
+    return redirect()->route('viewFeedback')->with('notify_message', ['status' => 'success', 'msg' => 'Reply sent successfully']);
 }
 
 

@@ -55,10 +55,23 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('admin/update_post/{id}', [AdminController::class, 'showupdatepost'])->name('updatepost');
     Route::post('admin/update_post/{id}', [AdminController::class, 'updatepost'])->name('updatepost');
 
+    Route::get('admin/view_comments/{postId}', [AdminController::class, 'viewComments'])->name('viewComments');
+    Route::delete('admin/delete_comment/{id}', [AdminController::class, 'deleteComment'])->name('deleteComment');
+    Route::get('admin/edit_comment/{id}', [AdminController::class, 'editComment'])->name('editComment');
+    Route::post('admin/update_comment/{id}', [AdminController::class, 'updateComment'])->name('updateComment');
+
+
     Route::get('admin/view_chat', [AdminController::class, 'chathome'])->name('chathome');
     Route::delete('admin/delete_chat/{id}', [AdminController::class, 'deletechat'])->name('deletechat');
     Route::get('admin/update_chat/{id}', [AdminController::class, 'showupdatechat'])->name('updatechat');
     Route::post('admin/update_chat/{id}', [AdminController::class, 'updatechat'])->name('updatechat');
+
+    Route::get('admin/view_feedback', [AdminController::class, 'viewFeedback'])->name('viewFeedback');
+    Route::delete('admin/delete_feedback/{id}', [AdminController::class, 'deleteFeedback'])->name('deleteFeedback');
+    Route::get('admin/reply_feedback/{id}', [AdminController::class, 'replyContact'])->name('replyContact');
+    Route::post('admin/reply_feedback/{id}', [AdminController::class, 'storeReplyContact'])->name('storeReplyContact');
+    
+
 });
 
 

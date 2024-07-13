@@ -84,7 +84,7 @@
                 <a href="{{route('viewpost')}}" class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
-                   Post
+                   Posts
                   </p>
                 </a>
               </li>    
@@ -92,10 +92,19 @@
                 <a href="{{route('chathome')}}" class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
-                    Chat
+                    Chats
                   </p>
                 </a>
-              </li>   
+              </li>  
+              <li class="nav-item">
+                <a href="{{route('viewFeedback')}}" class="nav-link">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>
+                    Feedback
+                  </p>
+                </a>
+              </li> 
+
             </ul>
           </nav>
         </div>
@@ -159,7 +168,7 @@
         // toast: true,
         position: 'top',
         showConfirmButton: false,
-        timer: 5000
+        timer: 1600
       });
       function make_notify(status, msg) {
           Toast.fire({

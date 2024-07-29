@@ -29,7 +29,7 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
-                            <a href="{{ route('editComment', $comment->id) }}" class="btn btn-info">Edit</a>
+                            {{-- <a href="{{ route('editComment', $comment->id) }}" class="btn btn-info">Edit</a> --}}
                         </td>
                     </tr>
                     @empty

@@ -6,6 +6,29 @@
         <div class="card-header">
             Feedback Entries
         </div>
+        <form action="{{ url()->current() }}" method="GET">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <label for="email">User Email</label>
+                        <input class="form-control" type="text" name="email" value="{{ request()->get('email') }}">
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label for="message">Message</label>
+                        <input class="form-control" type="text" name="message" value="{{ request()->get('message') }}">
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="row">
+                    <div class="col">
+                        <a href="{{ url()->current() }}" class="btn btn-secondary" type="button">Reset</a>
+                        <button class="btn btn-primary float-right" type="submit">Search</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
         <div class="card-body">
             <table class="table table-light">
                 <thead class="thead-light">

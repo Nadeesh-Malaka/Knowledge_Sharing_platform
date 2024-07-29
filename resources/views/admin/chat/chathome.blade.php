@@ -57,7 +57,7 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
-                            <a href="{{ route('updatechat', $chat->id) }}" class="btn btn-info">Edit</a>
+                            {{-- <a href="{{ route('updatechat', $chat->id) }}" class="btn btn-info">Edit</a> --}}
                         </td>
                     </tr>
                     @empty

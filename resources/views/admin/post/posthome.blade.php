@@ -76,7 +76,7 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
-                            <a href="{{ route('updatepost', $post->id) }}" class="btn btn-info">Edit</a>
+                            {{-- <a href="{{ route('updatepost', $post->id) }}" class="btn btn-info">Edit</a> --}}
                             <a href="{{ route('viewComments', $post->id) }}" class="btn btn-link">View Comments</a>
                         </td>
                         

@@ -308,11 +308,22 @@ public function updatechat(Request $request, $id)
 
 
     
-public function viewFeedback()
+public function viewFeedback(Request $request)
 {
-    $feedbacks = Contact::all();
+    $query = Contact::query();
+
+    if ($request->filled('email')) {
+        $query->where('email', 'like', '%' . $request->email . '%');
+    }
+
+    if ($request->filled('message')) {
+        $query->where('message', 'like', '%' . $request->message . '%');
+    }
+    
+    $feedbacks = $query->get();
     return view('admin.feedback.feedbackhome', compact('feedbacks'));
 }
+
 
 public function deleteFeedback($id)
 {

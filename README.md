@@ -4,7 +4,7 @@ A collaborative web-based platform developed to connect individuals for knowledg
 
 ---
 
-## 📖 Table of Contents
+## 📚 Table of Contents
 1. [Overview](#overview)
 2. [Features](#features)
 3. [Tech Stack](#tech-stack)
@@ -79,3 +79,93 @@ git clone https://github.com/Nadeesh-Malaka/Knowledge_Sharing_platform.git
 cd Q-A_and_Chat_for_Knowledge_Sharing-platform
 ```
 
+### Step 2: Backend Setup (Laravel)
+
+1. Install dependencies:
+   ```bash
+   composer install
+   ```
+
+2. Create and configure the `.env` file:
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=knowledge_sharing
+   DB_USERNAME=root
+   DB_PASSWORD=yourpassword
+   ```
+
+3. Run database migrations:
+   ```bash
+   php artisan migrate
+   ```
+
+4. Start the Laravel development server:
+   ```bash
+   php artisan serve
+   ```
+
+---
+
+## 🔑 Admin Credentials
+- **Email:** admin@gmail.com  
+- **Password:** 12345678  
+
+---
+
+## 🎨 UI Features
+- **Responsive Design:** Optimized for mobile, tablet, and desktop devices.
+- **Dark Mode:** Optional dark mode for a sleek user experience.
+- **User-Friendly Navigation:** Simplified and modern layout for all user roles.
+
+---
+
+## 🧪 Testing Methodologies
+We employed various testing methods to ensure system reliability:
+- **Unit Testing:** Validate individual components and modules.
+- **Integration Testing:** Ensure smooth interaction between components.
+- **System Testing:** Evaluate the system as a whole.
+- **User Acceptance Testing:** Verify functionality aligns with user needs.
+- **Performance Testing:** Assess responsiveness under different load conditions.
+- **Security Testing:** Identify and mitigate vulnerabilities.
+- **Regression Testing:** Ensure updates don’t disrupt existing features.
+
+---
+
+## 📊 Future Enhancements
+- **AI-Powered Insights**
+  - Automated topic suggestions.
+  - AI-curated learning paths based on user activity.
+- **Mobile App**
+  - Develop a Flutter-based mobile app for on-the-go access.
+  - Push notifications for instant updates.
+- **Gamification**
+  - Leaderboards, badges, and rewards for active contributors.
+- **Collaboration Tools**
+  - Group discussions, shared projects, and peer reviews.
+- **Integration**
+  - Sync with LMS platforms for seamless academic resource sharing.
+
+---
+
+## 🌟 Contributors
+**Team Members:**
+- Nadeesh Malaka -
+- Udara Dilshan
+- Sasini Devaraja
+- Hiruni Sandupama
+- Harsha Madushan
+
+**Supervisor:**
+- Mrs. Thilini Bakmeedeniya - Email
+
+---
+
+## 📝 License
+This project is licensed under the MIT License.
+
+---
+
+## 📞 Contact
+For further queries or support, reach out to **Nadeesh Malaka**.
